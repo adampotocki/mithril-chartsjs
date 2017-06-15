@@ -58,7 +58,7 @@ export default {
   getData() {
     m.request({
       method: 'GET',
-      url: '../data/line.json',
+      url: 'data/line.json',
     })
     .then(items => {
       this.config.data.labels = items.labels;

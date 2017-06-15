@@ -40,7 +40,7 @@ export default {
     if (!this.loaded) {
       m.request({
         method: 'GET',
-        url: '../data/bar.json',
+        url: 'data/bar.json',
       })
       .then(items => {
         this.config.data.labels = items.labels;

@@ -9,20 +9,10 @@ export default {
   config: {
     type: 'horizontalBar',
     data: {
-      labels: [
-        'CoRe',
-        'Hill Center',
-        'C8IM Module Bldg',
-        'Loree Classroom-Office',
-      ],
+      labels: [],
       datasets: [{
         label: 'Rooms',
-        data: [
-          177,
-          42,
-          93,
-          23
-        ],
+        data: [],
         backgroundColor: [
           chartColors.green,
           chartColors.blue,
@@ -51,7 +41,7 @@ export default {
     setTimeout(function() {
       m.request({
         method: 'GET',
-        url: '../data/bar2.json',
+        url: 'data/bar2.json',
       })
       .then(items => {
         self.config.data.labels = items.labels;

@@ -41,7 +41,7 @@ export default {
   getData() {
     m.request({
       method: 'GET',
-      url: '../data/doughnut.json',
+      url: 'data/doughnut.json',
     })
     .then(items => {
       this.config.data.labels = items.labels;
