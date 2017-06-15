@@ -11,4 +11,4 @@
 ```
 
 ## Demo
-[https://adampotocki.github.io/mithril-chartsjs/public/](#Demo)
+<a href="https://adampotocki.github.io/mithril-chartsjs/public/" target="_blank">Click here</a>
