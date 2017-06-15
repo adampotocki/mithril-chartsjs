@@ -16,6 +16,7 @@ import allCharts from './views/allCharts';
 import barCharts from './views/barCharts';
 import lineCharts from './views/lineCharts';
 import doughnutCharts from './views/doughnutCharts';
+import highChart from './views/highChart';
 
 // start fetching data for models
 barModel.getData();
@@ -27,7 +28,8 @@ const routes = {
   '/': layoutWrapper(allCharts),
   '/bar': layoutWrapper(barCharts),
   '/line': layoutWrapper(lineCharts),
-  '/doughnut': layoutWrapper(doughnutCharts)
+  '/doughnut': layoutWrapper(doughnutCharts),
+  '/highchart': layoutWrapper(highChart)
 };
 
 const appEntry = document.getElementById('appEntry');

@@ -7,6 +7,7 @@ const links = [
   { href: '/bar', title: 'Bar Chart' },
   { href: '/line', title: 'Line Chart' },
   { href: '/doughnut', title: 'Doughnut Chart' },
+  { href: '/highchart', title: 'Highchart Sample' },
 ];
 
 const layout = {
