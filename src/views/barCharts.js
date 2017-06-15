@@ -7,13 +7,19 @@ import barModelTwo from '../models/barModelTwo';
 
 import chartComponent from '../components/chartComponent';
 
+function renderChart(model) {
+  return model.loaded
+    ? m('.column', m(chartComponent, { model: model }))
+    : m('.column.has-text-centered', 'Loading...');
+}
+
 export default {
   view(vnode) {
     return [
       m('h1.title.has-text-centered', 'Bar Charts'),
       m('.columns', [
-        barModel.loaded ? m('.column', m(chartComponent, { model: barModel })) : m('.column', 'Loading...'),
-        barModelTwo.loaded ? m('.column', m(chartComponent, { model: barModelTwo })) : m('.column', 'Loading after 5 secs...')
+        renderChart(barModel),
+        renderChart(barModelTwo)
       ])
     ];
   }

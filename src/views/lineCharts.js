@@ -11,7 +11,9 @@ export default {
     return [
       m('h1.title.has-text-centered', 'Line Charts'),
       m('.columns', [
-        lineModel.loaded ? m('.column', m(chartComponent, { model: lineModel })) : m('.column', 'Loading...')
+        lineModel.loaded
+          ? m('.column', m(chartComponent, { model: lineModel }))
+          : m('.column.has-text-centered', 'Loading...')
       ])
     ];
   }

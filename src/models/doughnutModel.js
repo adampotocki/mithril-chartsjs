@@ -19,7 +19,7 @@ export default {
           chartColors.yellow,
           chartColors.green,
           chartColors.blue,
-          chartColors.gray
+          chartColors.grey
         ]
       }]
     },

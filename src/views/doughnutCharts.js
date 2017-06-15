@@ -11,7 +11,9 @@ export default {
     return [
       m('h1.title.has-text-centered', 'Doughnut Charts'),
       m('.columns', [
-        doughnutModel.loaded ? m('.column', m(chartComponent, { model: doughnutModel })) : m('.column', 'Loading...')
+        doughnutModel.loaded
+          ? m('.column', m(chartComponent, { model: doughnutModel }))
+          : m('.column.has-text-centered', 'Loading...')
       ])
     ];
   }
