@@ -1,0 +1,35 @@
+{
+  "name": "mithril-chartjs",
+  "description": "Mithril + Chart.js",
+  "version": "0.1.0",
+  "author": "",
+  "license": "MIT",
+  "main": "src/entry.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w",
+    "serve": "browser-sync start --server './public' --files 'public/js/bundle.js'",
+    "start": "npm-run-all --parallel watch serve"
+  },
+  "dependencies": {
+    "chart.js": "^2.6.0",
+    "mithril": "^1.1.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "cssnano": "^3.10.0",
+    "npm-run-all": "^4.0.2",
+    "postcss-assets": "^4.1.0",
+    "postcss-cssnext": "^2.11.0",
+    "rollup": "^0.42.0",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-filesize": "^1.0.0",
+    "rollup-plugin-includepaths": "^0.2.2",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-postcss": "^0.5.3",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-watch": "^4.0.0",
+    "uglify-js": "^3.0.15"
+  }
+}

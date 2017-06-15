@@ -1,0 +1,27 @@
+# Runtime data
+pids
+*.pid
+*.seed
+dist
+
+# Logs
+logs
+*.log
+npm-debug.log
+
+# Environment
+admin.env
+.env
+
+# OS
+.DS_Store
+.tmp
+
+# IDE
+**/.idea
+
+# Node Modules - Dependency Directory
+node_modules
+
+# Build JS
+build/js/
