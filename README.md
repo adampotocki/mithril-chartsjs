@@ -9,3 +9,6 @@
   > npm i
   > npm start
 ```
+
+## Demo
+[https://adampotocki.github.io/mithril-chartsjs/public/](#Demo)
