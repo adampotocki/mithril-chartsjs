@@ -1,1 +1,1 @@
-{"version":3,"sources":["layout.css"],"names":[],"mappings":"AAAA,KACE,wBAA2B,CAC5B","file":"styles.css","sourcesContent":[".red {\n  background: red !important;\n}\n"]}
+{"version":3,"sources":["/Users/potockra/projects/mithril/mithril-chartjs/src/views/layout.css"],"names":[],"mappings":"AAAA","file":"styles.css"}

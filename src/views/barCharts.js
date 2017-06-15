@@ -12,8 +12,8 @@ export default {
     return [
       m('h1.title.has-text-centered', 'Bar Charts'),
       m('.columns', [
-        m('.column', m(chartComponent, { model: barModel })),
-        m('.column', m(chartComponent, { model: barModelTwo }))
+        barModel.loaded ? m('.column', m(chartComponent, { model: barModel })) : m('.column', 'Loading...'),
+        barModelTwo.loaded ? m('.column', m(chartComponent, { model: barModelTwo })) : m('.column', 'Loading after 5 secs...')
       ])
     ];
   }

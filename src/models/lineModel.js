@@ -1,43 +1,26 @@
 'use strict';
 
-import { randomScalingFactor, chartColors } from '../utils';
+import m from 'mithril';
+import { chartColors } from '../utils';
 
 export default {
   loaded: false,
-  chartConfig: {
+  config: {
     type: 'line',
     data: {
-      labels: [
-        'Fall 2015',
-        'Spring 2016',
-        'Fall 2016',
-        'Spring 2017',
-        'Fall 2017',
-      ],
+      labels: [],
       datasets: [{
         label: 'Majors',
         backgroundColor: chartColors.red,
         borderColor: chartColors.red,
-        data: [
-          815,
-          859,
-          985,
-          1040,
-          971
-        ],
+        data: [],
         fill: false,
       }, {
         label: 'Minors',
         fill: false,
         backgroundColor: chartColors.blue,
         borderColor: chartColors.blue,
-        data: [
-          213,
-          261,
-          212,
-          252,
-          256
-        ],
+        data: [],
       }]
     },
     options: {
@@ -72,10 +55,22 @@ export default {
       }
     }
   },
+  getData() {
+    m.request({
+      method: 'GET',
+      url: '../data/line.json',
+    })
+    .then(items => {
+      this.config.data.labels = items.labels;
+      this.config.data.datasets[0].data = items.majors;
+      this.config.data.datasets[1].data = items.minors;
+      this.loaded = true;
+    });
+  },
   randomizeData() {
-    this.chartConfig.data.datasets.forEach(dataset => {
+    this.config.data.datasets.forEach(dataset => {
       dataset.data = dataset.data.map(() => randomScalingFactor());
     });
-    this.loaded.update();
+    this.instance.update();
   }
 };

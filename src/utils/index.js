@@ -11,3 +11,15 @@ export const chartColors = {
 };
 
 export const randomScalingFactor = () => Math.round(Math.random() * 100);
+
+export const reloadData = model => {
+  model.loaded = false;
+  model.getData();
+};
+
+export const randomizeData = model => {
+  model.config.data.datasets.forEach(dataset => {
+    dataset.data = dataset.data.map(() => randomScalingFactor());
+  });
+  model.instance.update();
+}

@@ -2,17 +2,32 @@
 
 import m from 'mithril';
 
-import layout from './views/layout';
+// models
+import barModel from './models/barModel';
+import barModelTwo from './models/barModelTwo';
+import lineModel from './models/lineModel';
+import doughnutModel from './models/doughnutModel';
+
+// layout/view wrapper
+import layoutWrapper from './layout';
+
+// views
 import allCharts from './views/allCharts';
 import barCharts from './views/barCharts';
 import lineCharts from './views/lineCharts';
 import doughnutCharts from './views/doughnutCharts';
 
+// start fetching data for models
+barModel.getData();
+barModelTwo.getData();
+lineModel.getData();
+doughnutModel.getData();
+
 const routes = {
-  '/': layout(allCharts),
-  '/bar': layout(barCharts),
-  '/line': layout(lineCharts),
-  '/doughnut': layout(doughnutCharts)
+  '/': layoutWrapper(allCharts),
+  '/bar': layoutWrapper(barCharts),
+  '/line': layoutWrapper(lineCharts),
+  '/doughnut': layoutWrapper(doughnutCharts)
 };
 
 const appEntry = document.getElementById('appEntry');

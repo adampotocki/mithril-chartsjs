@@ -1,21 +1,18 @@
 'use strict';
 
-import { randomScalingFactor, chartColors } from '../utils';
+import m from 'mithril';
+import { chartColors } from '../utils';
 
 export default {
   loaded: false,
-  chartConfig: {
+  instance: undefined,
+  config: {
     type: 'doughnut',
     data: {
+      labels: [],
       datasets: [{
-        data: [
-          193,
-          8,
-          4,
-          2,
-          167,
-          1
-        ],
+        label: 'Dataset 1',
+        data: [],
         backgroundColor: [
           chartColors.red,
           chartColors.orange,
@@ -23,17 +20,8 @@ export default {
           chartColors.green,
           chartColors.blue,
           chartColors.gray
-        ],
-        label: 'Dataset 1'
-      }],
-      labels: [
-        'Faculty',
-        'Fellows',
-        'Leadership',
-        'Research',
-        'Staff',
-        'Other'
-      ]
+        ]
+      }]
     },
     options: {
       responsive: true,
@@ -50,10 +38,15 @@ export default {
       }
     }
   },
-  randomizeData() {
-    this.chartConfig.data.datasets.forEach(dataset => {
-      dataset.data = dataset.data.map(() => randomScalingFactor());
+  getData() {
+    m.request({
+      method: 'GET',
+      url: '../data/doughnut.json',
+    })
+    .then(items => {
+      this.config.data.labels = items.labels;
+      this.config.data.datasets[0].data = items.employees;
+      this.loaded = true;
     });
-    this.loaded.update();
   }
 };

@@ -14,12 +14,12 @@ export default {
     return [
       m('h1.title.has-text-centered', 'Mithril + Chart.js'),
       m('.columns', [
-        m('.column', m(chartComponent, { model: barModel })),
-        m('.column', m(chartComponent, { model: barModelTwo })),
-        m('.column', m(chartComponent, { model: lineModel }))
+        barModel.loaded ? m('.column', m(chartComponent, { model: barModel })) : m('.column.has-text-centered', 'Loading...'),
+        barModelTwo.loaded ? m('.column', m(chartComponent, { model: barModelTwo })) : m('.column.has-text-centered', 'Loading after 5 secs...'),
+        lineModel.loaded ? m('.column', m(chartComponent, { model: lineModel })) : m('.column.has-text-centered', 'Loading...')
       ]),
       m('.columns', [
-        m('.column', m(chartComponent, { model: doughnutModel })),
+        doughnutModel.loaded ? m('.column', m(chartComponent, { model: doughnutModel })) : m('.column.has-text-centered', 'Loading...'),
         m('.column', ''),
         m('.column', '')
       ])

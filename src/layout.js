@@ -1,7 +1,5 @@
 'use strict';
 
-import './layout.css';
-
 import m from 'mithril';
 
 const links = [

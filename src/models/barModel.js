@@ -1,27 +1,18 @@
 'use strict';
 
 import m from 'mithril';
-import { randomScalingFactor, chartColors } from '../utils';
+import { chartColors } from '../utils';
 
 export default {
   loaded: false,
-  chartConfig: {
+  instance: undefined,
+  config: {
     type: 'horizontalBar',
     data: {
-      labels: [
-        'CoRe',
-        'Hill Center',
-        'C8IM Module Bldg',
-        'Loree Classroom-Office',
-      ],
+      labels: [],
       datasets: [{
         label: 'Rooms',
-        data: [
-          77,
-          72,
-          33,
-          1
-        ],
+        data: [],
         backgroundColor: [
           chartColors.green,
           chartColors.blue,
@@ -45,10 +36,17 @@ export default {
       }
     }
   },
-  randomizeData() {
-    this.chartConfig.data.datasets.forEach(dataset => {
-      dataset.data = dataset.data.map(() => randomScalingFactor());
-    });
-    this.loaded.update();
+  getData() {
+    if (!this.loaded) {
+      m.request({
+        method: 'GET',
+        url: '../data/bar.json',
+      })
+      .then(items => {
+        this.config.data.labels = items.labels;
+        this.config.data.datasets[0].data = items.rooms;
+        this.loaded = true;
+      });
+    }
   }
 };

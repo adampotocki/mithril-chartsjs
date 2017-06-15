@@ -1,10 +1,12 @@
 'use strict';
 
-import { randomScalingFactor, chartColors } from '../utils';
+import m from 'mithril';
+import { chartColors } from '../utils';
 
 export default {
   loaded: false,
-  chartConfig: {
+  instance: undefined,
+  config: {
     type: 'horizontalBar',
     data: {
       labels: [
@@ -44,10 +46,18 @@ export default {
       }
     }
   },
-  randomizeData() {
-    this.chartConfig.data.datasets.forEach(dataset => {
-      dataset.data = dataset.data.map(() => randomScalingFactor());
-    });
-    this.loaded.update();
+  getData() {
+    const self = this;
+    setTimeout(function() {
+      m.request({
+        method: 'GET',
+        url: '../data/bar2.json',
+      })
+      .then(items => {
+        self.config.data.labels = items.labels;
+        self.config.data.datasets[0].data = items.rooms;
+        self.loaded = true;
+      });
+    }, 5000);
   }
 };
