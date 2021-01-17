@@ -1,7 +1,5 @@
-'use strict';
-
-import m from 'mithril';
-import { chartColors } from '../utils';
+import m from 'mithril'
+import { chartColors } from '../utils'
 
 export default {
   loaded: false,
@@ -56,21 +54,18 @@ export default {
     }
   },
   getData() {
-    m.request({
-      method: 'GET',
-      url: 'data/line.json',
-    })
+    m.request('data/line.json',{method:'GET'})
     .then(items => {
-      this.config.data.labels = items.labels;
-      this.config.data.datasets[0].data = items.majors;
-      this.config.data.datasets[1].data = items.minors;
-      this.loaded = true;
-    });
+      this.config.data.labels = items.labels
+      this.config.data.datasets[0].data = items.majors
+      this.config.data.datasets[1].data = items.minors
+      this.loaded = true
+    })
   },
   randomizeData() {
     this.config.data.datasets.forEach(dataset => {
-      dataset.data = dataset.data.map(() => randomScalingFactor());
-    });
-    this.instance.update();
+      dataset.data = dataset.data.map(() => randomScalingFactor())
+    })
+    this.instance.update()
   }
-};
+}

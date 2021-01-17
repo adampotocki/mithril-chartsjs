@@ -1,7 +1,5 @@
-'use strict';
-
-import m from 'mithril';
-import { chartColors } from '../utils';
+import m from 'mithril'
+import { chartColors } from '../utils'
 
 export default {
   loaded: false,
@@ -38,15 +36,12 @@ export default {
   },
   getData() {
     if (!this.loaded) {
-      m.request({
-        method: 'GET',
-        url: 'data/bar.json',
-      })
+      m.request('data/bar.json',{method:'GET'})
       .then(items => {
-        this.config.data.labels = items.labels;
-        this.config.data.datasets[0].data = items.rooms;
-        this.loaded = true;
-      });
+        this.config.data.labels = items.labels
+        this.config.data.datasets[0].data = items.rooms
+        this.loaded = true
+      })
     }
   }
-};
+}

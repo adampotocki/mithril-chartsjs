@@ -1,47 +1,52 @@
-'use strict';
-
-import m from 'mithril';
+import m from 'mithril'
 
 const links = [
-  { href: '/', title: 'All Charts' },
-  { href: '/bar', title: 'Bar Chart' },
+  { href: '/all',  title: 'All Charts' },
+  { href: '/bar',  title: 'Bar Chart'  },
   { href: '/line', title: 'Line Chart' },
-  { href: '/doughnut', title: 'Doughnut Chart' },
-  { href: '/highchart', title: 'Highchart Sample' },
-];
+  { href: '/donut',title: 'Donut Chart'},
+]
 
-const layout = {
-  view(vnode) {
-    return [
-      m(`nav.nav.has-shadow`, [
-        m('.nav-left', [
-          m('a.nav-item[href="/"]', {
-            oncreate: m.route.link
-          }, 'Mithril + Charts.js')
-        ]),
-        m('span.nav-toggle', [
-          m('span', ''),
-          m('span', ''),
-          m('span', '')
-        ]),
-        m('.nav-right.nav-menu', [
-          links.map(link => {
-            return m(`a.nav-item.is-tab[href=${link.href}]`, {
-              class: m.route.get() === link.href ? 'is-active' : '',
-              oncreate: m.route.link
-            }, link.title);
-          })
+const layout = { view: (vnode) => [
+  m("nav.navbar[role='navigation']",[
+    m(".navbar-brand",[
+      m(m.route.Link, {
+        selector: 'a.navbar-item[href="/"]',
+      }, 'Mithril + Chart.js'),
+      m("a.navbar-burger[role='button']",[
+        m("span[aria-hidden='true']",'1'),
+        m("span[aria-hidden='true']",'2'),
+        m("span[aria-hidden='true']",'3'),
+      ])
+    ]),
+    m(".navbar-menu",[
+      m(".navbar-start",[
+        m("a.navbar-item", " Home "),
+        m("a.navbar-item", " Documentation "),
+        m(".navbar-item.has-dropdown.is-hoverable",[
+          m("a.navbar-link", " More "),
+          m(".navbar-dropdown",[
+            m("a.navbar-item", " About "),
+            m("a.navbar-item", " Jobs "),
+            m("a.navbar-item", " Contact "),
+            m("hr.navbar-divider"),
+            m("a.navbar-item", " Report an issue "),
+          ])
         ])
       ]),
-      m(`section.section`, [
-        m(`.container`, vnode.children)
-      ])
-    ];
-  }
-};
+      m(".navbar-end", links.map(link =>
+        m(m.route.Link, {
+          class: m.route.get()===link.href ? 'is-active' : '',
+          selector: `a.navbar-item.is-tab[href=${link.href}]`
+        }, link.title)
+      ))
+    ])
+  ]),
+  m('section.section',
+    m('.container', vnode.children)
+  ),
+]}
 
-export default function(view) {
-  return {
-    render: () => m(layout, m(view))
-  };
-}
+export default (child) => ({
+  view: () => m(layout, m(child))
+})
