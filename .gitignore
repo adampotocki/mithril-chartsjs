@@ -2,7 +2,6 @@
 pids
 *.pid
 *.seed
-dist
 
 # Logs
 logs

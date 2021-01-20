@@ -1,7 +1,5 @@
-'use strict';
-
-import m from 'mithril';
-import { chartColors } from '../utils';
+import m from 'mithril'
+import { chartColors } from '../utils'
 
 export default {
   loaded: false,
@@ -39,14 +37,11 @@ export default {
     }
   },
   getData() {
-    m.request({
-      method: 'GET',
-      url: 'data/doughnut.json',
-    })
+    m.request('data/doughnut.json',{method:'GET'})
     .then(items => {
-      this.config.data.labels = items.labels;
-      this.config.data.datasets[0].data = items.employees;
-      this.loaded = true;
-    });
+      this.config.data.labels = items.labels
+      this.config.data.datasets[0].data = items.employees
+      this.loaded = true
+    })
   }
-};
+}

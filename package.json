@@ -1,36 +1,49 @@
 {
   "name": "mithril-chartjs",
+  "version": "0.2.0",
   "description": "Mithril + Chart.js",
-  "version": "0.1.0",
-  "author": "",
   "license": "MIT",
-  "main": "src/entry.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/giancarlocp/mithril-chartjs.git"
+  },
+  "main": "dist/js/bundle",
+  "module": "dist/js/bundle.mjs",
   "scripts": {
-    "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "serve": "browser-sync start --server './public' --files 'public/js/bundle.js'",
-    "start": "npm-run-all --parallel watch serve"
+    "build": "npm run clean && npm run rollup",
+    "serve": "http-server -p 5000 dist",
+    "rollup": "rollup -c ./scripts/rollup.umd.js --environment DEPS:1 && rollup -c ./scripts/rollup.es.js --environment DEPS:1",
+    "clean": "rimraf dist/js/*",
+    "dev": "rollup -c ./scripts/rollup.watch.js --environment DEPS:1,PORT:3000,WATCH_DIR:./dist/ --watch"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-external-helpers": "^7.10.4",
+    "@babel/plugin-transform-object-assign": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/register": "^7.11.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "es-module-loader": "^2.3.0",
+    "http-server": "^0.12.3",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.28.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-pathmodify": "^1.0.1",
+    "rollup-plugin-serve": "^1.0.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-watch": "^4.3.1"
   },
   "dependencies": {
-    "chart.js": "^2.6.0",
-    "highcharts": "^5.0.12",
-    "mithril": "^1.1.1"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.12",
-    "cssnano": "^3.10.0",
-    "npm-run-all": "^4.0.2",
-    "postcss-assets": "^4.1.0",
-    "postcss-cssnext": "^2.11.0",
-    "rollup": "^0.42.0",
-    "rollup-plugin-buble": "^0.15.0",
-    "rollup-plugin-commonjs": "^8.0.2",
-    "rollup-plugin-filesize": "^1.0.0",
-    "rollup-plugin-includepaths": "^0.2.2",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "rollup-plugin-postcss": "^0.5.3",
-    "rollup-plugin-uglify": "^2.0.1",
-    "rollup-watch": "^4.0.0",
-    "uglify-js": "^3.0.15"
+    "chart.js": "^2.9.4",
+    "mithril": "^2.0.4"
   }
 }
